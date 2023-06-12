@@ -313,18 +313,18 @@ def abrirTelaRelatorioBatelada():
                            "H_FIM", "Q_SEMENTE", "Q_COLA", "Q_CORANTE", "Q_PO1", "Q_PO2")
     colunas = treeview["columns"]
 
-    treeview.column("End_Maquina", width=100)
-    treeview.column("ID_Registro", width=50)
-    treeview.column("NR_DOCUMENTO", width=100)
-    treeview.column("NR_BATELADA", width=100)
-    treeview.column("TIPO_BATELADA", width=100)
-    treeview.column("H_INICIO", width=150)
-    treeview.column("H_FIM", width=150)
-    treeview.column("Q_SEMENTE", width=100)
-    treeview.column("Q_COLA", width=100)
-    treeview.column("Q_CORANTE", width=100)
+    treeview.column("End_Maquina", width=120)
+    treeview.column("ID_Registro", width=30)
+    treeview.column("NR_DOCUMENTO", width=80)
+    treeview.column("NR_BATELADA", width=80)
+    treeview.column("TIPO_BATELADA", width=80)
+    treeview.column("H_INICIO", width=230)
+    treeview.column("H_FIM", width=230)
+    treeview.column("Q_SEMENTE", width=80)
+    treeview.column("Q_COLA", width=80)
+    treeview.column("Q_CORANTE", width=80)
     treeview.column("Q_PO1", width=50)
-    treeview.column("Q_PO2", width=100)
+    treeview.column("Q_PO2", width=50)
 
     treeview.heading("End_Maquina", text="Maquina")
     treeview.heading("ID_Registro", text="Id")
@@ -379,6 +379,7 @@ def abrirTelaRelatorioGeral():
 
     global ordem_atual, dados2
     nomeMaquinas = db1.recebeNomeMAquinasGeral()
+    print(nomeMaquinas)
     nomeMaquinas.insert(0, 'Todos')
     dados2 = ()
 
@@ -486,7 +487,7 @@ def abrirTelaRelatorioGeral():
     
 
     janelaDB = tk.Toplevel()
-    janelaDB.title('Registros Relatorio Batelada')
+    janelaDB.title('Registros Relatorio Geral')
 
     frameDB1 = tk.LabelFrame(janelaDB, text="Comandos", padx=5, pady=5)
     frameDB1.grid(row=0, column=0, sticky='we')
@@ -549,39 +550,38 @@ def abrirTelaRelatorioGeral():
 
     janelaDB.resizable(False, False)
 
-    dados = db1.exibeRelatorio()
+    dados = db1.exibeRelatorioGeral()
     dados2 = dados
 
+    print(dados)
+
     treeview = ttk.Treeview(frameDB2, show="headings")
-    treeview["columns"] = ("End_Maquina", "ID_Registro", "NR_DOCUMENTO", "NR_BATELADA", "TIPO_BATELADA", "H_INICIO",
-                           "H_FIM", "Q_SEMENTE", "Q_COLA", "Q_CORANTE", "Q_PO1", "Q_PO2")
+    treeview["columns"] = ("End_Maquina","ID_REGISTRO", "H_INICIO", "H_FIM", "Q_BATELADA", "C_SEMENTE", "C_COLA", "C_COREANTE", "Q_PO1", "Q_PO2")
     colunas = treeview["columns"]
 
-    treeview.column("End_Maquina", width=100)
-    treeview.column("ID_Registro", width=50)
-    treeview.column("NR_DOCUMENTO", width=100)
-    treeview.column("NR_BATELADA", width=100)
-    treeview.column("TIPO_BATELADA", width=100)
-    treeview.column("H_INICIO", width=150)
-    treeview.column("H_FIM", width=150)
-    treeview.column("Q_SEMENTE", width=100)
-    treeview.column("Q_COLA", width=100)
-    treeview.column("Q_CORANTE", width=100)
-    treeview.column("Q_PO1", width=50)
+    
+    treeview.column("End_Maquina", width=100)    
+    treeview.column("ID_REGISTRO", width=50)
+    treeview.column("H_INICIO", width=220)
+    treeview.column("H_FIM", width=220)
+    treeview.column("Q_BATELADA", width=100)
+    treeview.column("C_SEMENTE", width=100)
+    treeview.column("C_COLA", width=100)
+    treeview.column("C_COREANTE", width=100)
+    treeview.column("Q_PO1", width=100)
     treeview.column("Q_PO2", width=100)
 
+    
     treeview.heading("End_Maquina", text="Maquina")
-    treeview.heading("ID_Registro", text="Id")
-    treeview.heading("NR_DOCUMENTO", text="Nr Doc")
-    treeview.heading("NR_BATELADA", text="Nr Bat")
-    treeview.heading("TIPO_BATELADA", text="Tipo")
+    treeview.heading("ID_REGISTRO", text="Id Registro")
     treeview.heading("H_INICIO", text="Inicio")
     treeview.heading("H_FIM", text="Fim")
-    treeview.heading("Q_SEMENTE", text="Semente")
-    treeview.heading("Q_COLA", text="Cola")
-    treeview.heading("Q_CORANTE", text="Corante")
-    treeview.heading("Q_PO1", text="Po 1")
-    treeview.heading("Q_PO2", text="Po 2")
+    treeview.heading("Q_BATELADA", text="Qt. Bateladas")
+    treeview.heading("C_SEMENTE", text="Qt. Sementes")
+    treeview.heading("C_COLA", text="Qt. Cola")
+    treeview.heading("C_COREANTE", text="Qt. Corante")
+    treeview.heading("Q_PO1", text="Qt. Pó 1")
+    treeview.heading("Q_PO2", text="Qt. Pó 2")
 
     treeview.configure(height=30)
 
@@ -620,248 +620,6 @@ def abrirTelaRelatorioGeral():
 
 
   
-def abrirTelaRelatorioCola():
-
-    global ordem_atual, dados2
-    nomeMaquinas = db1.recebeNomeMAquinas()
-    nomeMaquinas.insert(0, 'Todos')
-    dados2 = ()
-
-    # atualiza treeview
-    def atualizar_treeview (event):
-        global dados2
-        # Limpar dados existentes no treeview
-        treeview.delete(*treeview.get_children())
-
-        # Obter a opção selecionada no combobox
-        opcao_selecionada = combobox.get()
-
-        dados2 = db1.filtraRelatorio(opcao_selecionada)
-
-        print(dados2)
-
-        # Preencher o treeview com os dados retornados
-        for dado in dados2:
-            treeview.insert('', 'end', values=dado)
-
-    def exportarXLS():
-         # Obter o local e o nome do arquivo usando o filedialog
-        arquivo = filedialog.asksaveasfilename(defaultextension='.xls',
-                                            filetypes=[('Arquivos Excel', '*.xls')],
-                                            title='Salvar como')
-
-        if arquivo:
-            # Criar um objeto Workbook
-            workbook = xlwt.Workbook()
-            # Adicionar uma nova planilha ao workbook
-            worksheet = workbook.add_sheet('Dados')
-
-            cabecario = ['n°','end_maquina', 'ID_REGISTRO', 'NR_DOCUMENTO', 'NR_BATELADA', \
-                         'TIPO_BATELADA', 'H_INICIO', 'H_FIM', 'Q_SEMENTE', 'Q_COLA', \
-                        'Q_CORANTE', 'Q_PO1', 'Q_PO2', 'T_ALIMENTA_SEMENTE', 'T_DOSA_COLA',\
-                         'T_DOSA_CORANTE', 'T_DOSA_PO1', 'T_DOSA_PO2', 'T_CICLO_PANELA', 'T_PAUSA']
-            
-            for coluna, dado in enumerate(cabecario):
-                worksheet.write(0, coluna, dado)  # O primeiro argumento é o número da linha (0 nesse caso)
-
-            # Escrever os dados no arquivo Excel
-            for linha, valores in enumerate(dados2):
-                for coluna, valor in enumerate(valores):
-                    worksheet.write(linha + 1, coluna, valor)
-
-            # Salvar o arquivo Excel
-            workbook.save(arquivo)
-
-            # Exibir uma mensagem de sucesso
-            tk.messagebox.showinfo('Sucesso', 'Arquivo Excel salvo com sucesso!')
-
-    def exportarCSV():
-         # Obter o local e o nome do arquivo usando o filedialog
-        arquivo = filedialog.asksaveasfilename(defaultextension='.csv',
-                                            filetypes=[('Arquivos CSV', '*.csv')],
-                                            title='Salvar como')
-
-        if arquivo:
-            # Abrir o arquivo CSV para escrita
-            with open(arquivo, 'w', newline='') as f:
-                # Criar o objeto writer para escrever no arquivo CSV
-                writer = csv.writer(f, delimiter=',')
-
-                # Escrever os dados no arquivo CSV
-                for linha in dados2:
-                    writer.writerow(linha)
-
-            # Exibir uma mensagem de sucesso
-            tk.messagebox.showinfo('Sucesso', 'Arquivo CSV salvo com sucesso!')
-
-    def filtra():
-        global dados2
-        opcao_selecionada = combobox.get()
-        data_InicialSelecionada = date_inicio.get()
-        data_finalSelecionada = date_fim.get()
-        hora_selecionada = "00"
-        minutos_selecionados = "00"
-        segundos_selecionados = "00"
-        data_hora_inicio = f"{data_InicialSelecionada} {hora_selecionada}:{minutos_selecionados}:{segundos_selecionados}"
-        data_hora_fim = f"{data_finalSelecionada} {hora_selecionada}:{minutos_selecionados}:{segundos_selecionados}"
-            
-         # Limpar dados existentes no treeview
-        treeview.delete(*treeview.get_children())
-   
-        if opcao_selecionada == 'Todos':
-            dados2 = db1.buscarPorPeriodo(data_hora_inicio, data_hora_fim)
-            #print(dados2)
-            # Preencher o treeview com os dados retornados
-            for dado in dados2:
-                treeview.insert('', 'end', values=dado)
-
-        else:
-            dados2 = db1.buscarPorPeriodoMaquina(data_hora_inicio, data_hora_fim, opcao_selecionada)
-            #print(dados2)
-            # Preencher o treeview com os dados retornados
-            for dado in dados2:
-                treeview.insert('', 'end', values=dado)
-            
-        
-
-    
-
-    # Criar uma nova janela
-
-    
-
-    janelaDB = tk.Toplevel()
-    janelaDB.title('Registros Relatorio Batelada')
-
-    frameDB1 = tk.LabelFrame(janelaDB, text="Comandos", padx=5, pady=5)
-    frameDB1.grid(row=0, column=0, sticky='we')
-
-    framecombo = tk.LabelFrame(frameDB1, text="Maquinas:", padx=5, pady=5)
-    framecombo.grid(row=0, column=0, sticky='ns')
-
-
-    combobox = ttk.Combobox(framecombo, width=32, values=nomeMaquinas)
-    combobox.current(0)
-    combobox.bind("<<ComboboxSelected>>", atualizar_treeview)
-    combobox.grid(row=1, column=0)
-
-    labelespaco0 = tk.Label(framecombo, text="  ", padx=5, pady=5)
-    labelespaco0.grid(row=1, column=1)
-
-
-    framedata = tk.LabelFrame(frameDB1, text="Datas:", padx=5, pady=5)
-    framedata.grid(row=0, column=1, sticky='ns')
-
-    labelde = tk.Label(framedata, text="De: ", padx=5, pady=5)
-    labelde.grid(row=0, column=0, sticky='we')
-
-    # Criar um DateEntry para seleção da data
-    date_inicio = DateEntry(framedata, width=22, date_pattern='dd-mm-yyyy', padx=5, pady=5)
-    date_inicio.grid(row=0, column=1, sticky='we')
-
-    labelate = tk.Label(framedata, text="ate: ", padx=5, pady=5)
-    labelate.grid(row=0, column=2, sticky='we')
-
-    date_fim = DateEntry(framedata, width=22, date_pattern='dd-mm-yyyy', padx=5, pady=5)
-    date_fim.grid(row=0, column=3, sticky='we')
-
-    labelespaco = tk.Label(framedata, text="  ", padx=5, pady=5)
-    labelespaco.grid(row=0, column=4, sticky='we')
-
-    botao_filtrar = tk.Button(framedata, width=23, text='filtrar por data', command=filtra)
-    botao_filtrar.grid(row=0, column=5, sticky='ns')
-
-
-
-
-    frameExport = tk.LabelFrame(frameDB1, text="Exportar:", padx=5, pady=5)
-    frameExport.grid(row=0, column=2, sticky='ns')
-
-    botao_voltar = tk.Button(frameExport, text='Exportar .CSV', width=23, command=exportarCSV, padx=5, pady=5)
-    botao_voltar.grid(row=1, column=1)
-
-    botao_voltar = tk.Button(frameExport, text='Exportar .xls', width=23, command=exportarXLS, padx=5, pady=5)
-    botao_voltar.grid(row=1, column=2)
-
-    
-
-
-
-
-
-    frameDB2 = tk.LabelFrame(janelaDB, text="Dados:", padx=5, pady=5)
-    frameDB2.grid(row=2, column=0, sticky='we')   
-
-    janelaDB.resizable(False, False)
-
-    dados = db1.exibeRelatorio()
-    dados2 = dados
-
-    treeview = ttk.Treeview(frameDB2, show="headings")
-    treeview["columns"] = ("End_Maquina", "ID_Registro", "NR_DOCUMENTO", "NR_BATELADA", "TIPO_BATELADA", "H_INICIO",
-                           "H_FIM", "Q_SEMENTE", "Q_COLA", "Q_CORANTE", "Q_PO1", "Q_PO2")
-    colunas = treeview["columns"]
-
-    treeview.column("End_Maquina", width=100)
-    treeview.column("ID_Registro", width=50)
-    treeview.column("NR_DOCUMENTO", width=100)
-    treeview.column("NR_BATELADA", width=100)
-    treeview.column("TIPO_BATELADA", width=100)
-    treeview.column("H_INICIO", width=150)
-    treeview.column("H_FIM", width=150)
-    treeview.column("Q_SEMENTE", width=100)
-    treeview.column("Q_COLA", width=100)
-    treeview.column("Q_CORANTE", width=100)
-    treeview.column("Q_PO1", width=50)
-    treeview.column("Q_PO2", width=100)
-
-    treeview.heading("End_Maquina", text="Maquina")
-    treeview.heading("ID_Registro", text="Id")
-    treeview.heading("NR_DOCUMENTO", text="Nr Doc")
-    treeview.heading("NR_BATELADA", text="Nr Bat")
-    treeview.heading("TIPO_BATELADA", text="Tipo")
-    treeview.heading("H_INICIO", text="Inicio")
-    treeview.heading("H_FIM", text="Fim")
-    treeview.heading("Q_SEMENTE", text="Semente")
-    treeview.heading("Q_COLA", text="Cola")
-    treeview.heading("Q_CORANTE", text="Corante")
-    treeview.heading("Q_PO1", text="Po 1")
-    treeview.heading("Q_PO2", text="Po 2")
-
-    treeview.configure(height=30)
-
-    def center_data():
-
-        treeview.update()
-        width = treeview.winfo_width()
-        for col in treeview["columns"]:
-            treeview.column(col, anchor=tk.CENTER, width=int(width / len(treeview["columns"])) - 1)
-        treeview.update_idletasks()
-
-    frameDB2.bind("<Configure>", center_data)
-
-    treeview.tag_configure("linha_clara", background="#FFFFFF")
-    treeview.tag_configure("linha_escura", background="#EAEAEA")
-
-    for col in colunas:
-        col_encoded = col.encode("utf-8")
-        ordem_atual[col_encoded] = "asc"
-
-    vsb = ttk.Scrollbar(frameDB2, orient="vertical", command=treeview.yview)
-    vsb.grid(row=0, column=1, sticky='ns')
-    treeview.configure(yscrollcommand=vsb.set)
-    treeview.grid(row=0, column=0, sticky='ns')
-    janelaDB.grid_rowconfigure(2, weight=1)
-    janelaDB.grid_columnconfigure(1, weight=1)
-
-    for i, row in enumerate(dados):
-        estilo_linha = "linha_clara" if i % 2 == 0 else "linha_escura"
-        treeview.insert("", tk.END, text=row[0], values=row[1:], tags=(estilo_linha,))
-
-    center_data()
-
-    janelaDB.mainloop()
-
 
 #region organiza colunas
 def sort_column(treeview, col):
@@ -977,8 +735,7 @@ botaoDB1.grid(row=1, column=3, sticky='we')
 botaoDB1 = ttk.Button(framedb, text="Relatorio Geral", command= abrirTelaRelatorioGeral)
 botaoDB1.grid(row=2, column=3, sticky='we')
 
-botaoDB1 = ttk.Button(framedb, text="Relatorio Cola", command= abrirTelaRelatorioCola)
-botaoDB1.grid(row=3, column=3, sticky='we')
+
 
 
 botaofecha = ttk.Button(framedb, text="Parar Log", command= fechaJanela)
