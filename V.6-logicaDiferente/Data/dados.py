@@ -36,7 +36,7 @@ class BancoDados():
             result = consultaOpcoes.fetchone()
 
             if result[0] == 0:
-                print("grava prineiro registro relatorio geral")
+               # print("grava prineiro registro relatorio geral")
                 ss2 = [' ',  0, '00-00-0000 00:00:00',  '00-00-0000 00:00:00', 0,  0,  0,  0,  0,  0]
                 self.gravaRelatorioGeral(ss2)   
                 
@@ -93,7 +93,7 @@ class BancoDados():
 
     def gravaRelatorioGeral(self, dados):
 
-        print("tentando gravar relatorio geral")
+        #print("tentando gravar relatorio geral")
         try:
             cnnConexao = sqlite3.connect('dbSupervisorio.db')
             consultaConexao = cnnConexao.cursor()

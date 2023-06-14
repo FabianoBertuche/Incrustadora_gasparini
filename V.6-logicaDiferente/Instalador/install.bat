@@ -1,65 +1,54 @@
 ECHO OFF
-echo “######################################################”
-echo “###          ACTUAL Montagens e Automacao          ###”
-echo “###         ==============================         ###”
-echo “###                                                ###”
-echo “###     SCRIPT Para instalacao do supervisorio     ###”
-echo “###     Vc precisa estar conectado a internet!!    ###”
-echo “###                                                ###”
-echo “######################################################”
+echo ï¿½######################################################ï¿½
+echo ï¿½###                   Pinhalense                   ###ï¿½
+echo ï¿½###         ==============================         ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###     SCRIPT Para instalacao do supervisorio     ###ï¿½
+echo ï¿½###     Vc precisa estar conectado a internet!!    ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½######################################################ï¿½
 pause
 CLS
-echo “######################################################”
-echo “###                                                ###”
-echo “###  Vamos iniciar configurando a base do sistema  ###”
-echo “###                Install Python 2.7              ###”
-echo “###Lembrar de habilitar PHATH para todos users!!!!!###”
-echo “###                                                ###”
-echo “######################################################”
+echo ï¿½######################################################ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###  Vamos iniciar configurando a base do sistema  ###ï¿½
+echo ï¿½###                Install Python 3.11             ###ï¿½
+echo ï¿½###Lembrar de habilitar PHATH para todos users!!!!!###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½######################################################ï¿½
 pause
-start python-2.7.14.msi
-pause
-CLS
-echo “######################################################”
-echo “###                                                ###”
-echo “###                                                ###”
-echo “###      Configurando bibliotecas auxiliares       ###”
-echo “###                                                ###”
-echo “###                                                ###”
-echo “######################################################”
-python -mpip install matplotlib
-python -mpip install modbus_tk
+start python-3.11.4-amd64.exe
 pause
 CLS
-echo “######################################################”
-echo “###                                                ###”
-echo “###                                                ###”
-echo “###               Instalando QT                    ###”
-echo “###                                                ###”
-echo “###                                                ###”
-echo “######################################################”
+echo ï¿½######################################################ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###      Configurando bibliotecas auxiliares       ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½######################################################ï¿½
 pause
-start PyQt4-4.10-gpl-Py2.7-Qt4.8.4-x32.exe
+python -mpip install modbus_tk xlwt tkcalendar pystray Pillow
 pause
 CLS
-echo “######################################################”
-echo “###                                                ###”
-echo “###         Copiando Arquivos para sistema         ###”
-echo “###        Selecione a Opção D = diretorio         ###”
-echo “###                                                ###”
-echo “######################################################”
+echo ï¿½######################################################ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###         Copiando Arquivos para sistema         ###ï¿½
+echo ï¿½###        Selecione a Opcao D = diretorio         ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½######################################################ï¿½
 pause
 xcopy Sup c:\Sup /E /K
 cd \sup
 copy Supervisorio.lnk  "%homepath%/desktop/Supervisorio.lnk"
 CLS
-echo “######################################################”
-echo “###                                                ###”
-echo “###                                                ###”
-echo “###   Parabens seu sistema esta pronto para o uso  ###”
-echo “###                                                ###”
-echo “###                                                ###”
-echo “######################################################”
+echo ï¿½######################################################ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###   Parabens seu sistema esta pronto para o uso  ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½###                                                ###ï¿½
+echo ï¿½######################################################ï¿½
 pause
 
 

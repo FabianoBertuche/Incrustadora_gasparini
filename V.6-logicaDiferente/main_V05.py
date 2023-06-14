@@ -27,11 +27,11 @@ import time
 from Conn.comunicacao import maquina
 from Data.dados import BancoDados
 from tkcalendar import DateEntry
-
-#from acessaPlc import plc
-
 import locServer
 #endregion
+
+
+
 
 #region declara variaveis
 lista = []
@@ -102,8 +102,8 @@ if True:
         listaEnderecos.append(string1)
         listaMaquinas.update({string1 : 0})
 
-    print(listaEnderecos)#lista para exibir 
-    print(listaMaquinas)#dicionario para status
+    #print(listaEnderecos)#lista para exibir 
+    #print(listaMaquinas)#dicionario para status
 #endregion
 
 #region cria instancias com os IP
@@ -149,7 +149,7 @@ def abrirTelaRelatorioBatelada():
 
         dados2 = db1.filtraRelatorio(opcao_selecionada)
 
-        print(dados2)
+        #print(dados2)
 
         # Preencher o treeview com os dados retornados
         for dado in dados2:
@@ -379,7 +379,7 @@ def abrirTelaRelatorioGeral():
 
     global ordem_atual, dados2
     nomeMaquinas = db1.recebeNomeMAquinasGeral()
-    print(nomeMaquinas)
+    #print(nomeMaquinas)
     nomeMaquinas.insert(0, 'Todos')
     dados2 = ()
 
@@ -394,7 +394,7 @@ def abrirTelaRelatorioGeral():
 
         dados2 = db1.filtraRelatorioGeral(opcao_selecionada)
 
-        print(dados2)
+        #print(dados2)
 
         # Preencher o treeview com os dados retornados
         for dado in dados2:
@@ -412,10 +412,8 @@ def abrirTelaRelatorioGeral():
             # Adicionar uma nova planilha ao workbook
             worksheet = workbook.add_sheet('Dados')
 
-            cabecario = ['n°','end_maquina', 'ID_REGISTRO', 'NR_DOCUMENTO', 'NR_BATELADA', \
-                         'TIPO_BATELADA', 'H_INICIO', 'H_FIM', 'Q_SEMENTE', 'Q_COLA', \
-                        'Q_CORANTE', 'Q_PO1', 'Q_PO2', 'T_ALIMENTA_SEMENTE', 'T_DOSA_COLA',\
-                         'T_DOSA_CORANTE', 'T_DOSA_PO1', 'T_DOSA_PO2', 'T_CICLO_PANELA', 'T_PAUSA']
+            cabecario = ["End_Maquina","ID_REGISTRO", "H_INICIO", "H_FIM", "Q_BATELADA",\
+                          "C_SEMENTE", "C_COLA", "C_COREANTE", "Q_PO1", "Q_PO2"]
             
             for coluna, dado in enumerate(cabecario):
                 worksheet.write(0, coluna, dado)  # O primeiro argumento é o número da linha (0 nesse caso)
@@ -553,7 +551,7 @@ def abrirTelaRelatorioGeral():
     dados = db1.exibeRelatorioGeral()
     dados2 = dados
 
-    print(dados)
+    #print(dados)
 
     treeview = ttk.Treeview(frameDB2, show="headings")
     treeview["columns"] = ("End_Maquina","ID_REGISTRO", "H_INICIO", "H_FIM", "Q_BATELADA", "C_SEMENTE", "C_COLA", "C_COREANTE", "Q_PO1", "Q_PO2")
@@ -868,7 +866,7 @@ def consultaPlcGravaBancoRelatorioBatelada(PLC):
                 auxLinha = posicaoUltimaLinha
                 plc.escreveLinhaBatelada(posicaoUltimaLinha + 1)
             else:
-                print("id_Registro = 0")
+                #print("id_Registro = 0")
                 tagStart = False
         else:
                 #sai do loop
@@ -908,7 +906,7 @@ def consultaPlcGravaBancoRelatorioGeral(PLC):
         # verifica se o registro da linha no plc é maior que o do banco
         print(ultimoIDPlc, '>',ultimaLinhaDB )
         if ultimoIDPlc > ultimaLinhaDB:
-            print("entro")
+            #print("entro")
             plc.escreveLinhaGeral(posicaoUltimaLinha)
             plc.carregaLinhaGeral()
 
@@ -937,7 +935,7 @@ def consultaPlcGravaBancoRelatorioGeral(PLC):
                 # db1.salvaUltimaSinc(atualizaDB, posicaoBanco)
                 plc.escreveLinhaGeral(posicaoUltimaLinha + 1)
             else:
-                print("id_Registro = 0")
+                #print("id_Registro = 0")
                 tagStart = False
         else:
                 #sai do loop
@@ -1042,6 +1040,9 @@ thread.start()
 janela.protocol("WM_DELETE_WINDOW", on_close)
 
 janela.resizable(width=False, height=False) 
+
+
+
 
 # Iniciar o loop principal do Tkinter
 janela.mainloop()

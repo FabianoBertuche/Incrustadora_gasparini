@@ -1,0 +1,2 @@
+Exception ignored in: <__main__.redirecionar_saida.<locals>.RedirecionadorSaida object at 0x00000208937EFDD0>
+AttributeError: 'RedirecionadorSaida' object has no attribute 'flush'
